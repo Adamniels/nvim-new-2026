@@ -26,8 +26,8 @@ return {
       vim.keymap.set("n", "<F13>g", builtin.live_grep, { desc = "Search text" })
       vim.keymap.set("n", "<F13>b", builtin.buffers, { desc = "Find buffers" })
       vim.keymap.set("n", "<F13>h", builtin.help_tags, { desc = "Help tags" })
-      vim.keymap.set("n", "<F13>gs", builtin.git_status, { desc = "Git status" })
-      vim.keymap.set("n", "<F13>gl", builtin.git_commits, { desc = "Git commits" })
+      vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "Git status" })
+      vim.keymap.set("n", "<leader>gl", builtin.git_commits, { desc = "Git commits" })
     end,
   },
 }

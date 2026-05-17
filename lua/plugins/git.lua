@@ -91,14 +91,14 @@ return {
         end
       end
 
-      vim.keymap.set("n", "<F13>gv", ":DiffviewOpen<CR>", { desc = "Git diff (vs index)" })
-      vim.keymap.set("n", "<F13>gc", diff_against_rev, { desc = "Git diff vs revision" })
-      vim.keymap.set("n", "<F13>gq", ":DiffviewClose<CR>", { desc = "Close git diff" })
-      vim.keymap.set("n", "<F13>gh", file_history_rev, { desc = "Git file history" })
-      vim.keymap.set("n", "<F13>gf", ":DiffviewFileHistory %<CR>", { desc = "Git history (current file)" })
+      vim.keymap.set("n", "<leader>gv", ":DiffviewOpen<CR>", { desc = "Git diff (vs index)" })
+      vim.keymap.set("n", "<leader>gc", diff_against_rev, { desc = "Git diff vs revision" })
+      vim.keymap.set("n", "<leader>gq", ":DiffviewClose<CR>", { desc = "Close git diff" })
+      vim.keymap.set("n", "<leader>gh", file_history_rev, { desc = "Git file history" })
+      vim.keymap.set("n", "<leader>gf", ":DiffviewFileHistory %<CR>", { desc = "Git history (current file)" })
 
       -- Diffview panel navigation (when focus is in the file panel)
-      vim.keymap.set("n", "<F13>gt", actions.toggle_files, { desc = "Toggle diff file panel" })
+      vim.keymap.set("n", "<leader>gt", actions.toggle_files, { desc = "Toggle diff file panel" })
     end,
   },
 }
