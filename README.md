@@ -18,6 +18,7 @@ These tools must be installed on your system before everything works correctly.
 |---|---|---|
 | [lua-language-server](https://github.com/LuaLS/lua-language-server) | `brew install lua-language-server` | Lua LSP |
 | [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server) | `npm install -g typescript-language-server typescript` | TypeScript/JavaScript LSP |
+| [pyright](https://github.com/microsoft/pyright) | `brew install pyright` | Python LSP |
 
 ### Optional but recommended
 
