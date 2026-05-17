@@ -17,6 +17,8 @@ vim.opt.smartcase = true
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.g.mapleader = " "
+
 -- Netrw explorer settings
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3

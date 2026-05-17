@@ -58,11 +58,15 @@ return {
       "DiffviewFileHistory",
       "DiffviewToggleFiles",
     },
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
     config = function()
       local actions = require("diffview.actions")
 
       require("diffview").setup({
+        use_icons = true,
         view = {
           default = {
             layout = "diff2_horizontal",
