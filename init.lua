@@ -38,3 +38,6 @@ vim.cmd.colorscheme("habamax")
 
 -- Load lazy.nvim
 require("config.lazy")
+
+-- Git status decorations in netrw (no plugin required)
+require("netrw_git")
