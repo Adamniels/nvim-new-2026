@@ -18,11 +18,13 @@ return {
 
       vim.lsp.config("ts_ls", {})
       vim.lsp.config("pyright", {})
+      vim.lsp.config("csharp_ls", {})
 
       vim.lsp.enable({
         "lua_ls",
         "ts_ls",
         "pyright",
+        "csharp_ls",
       })
 
       -- LSP keymaps
