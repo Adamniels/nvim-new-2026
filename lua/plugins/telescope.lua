@@ -10,6 +10,29 @@ return {
     config = function()
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
+      local previewers = require("telescope.previewers")
+
+      -- Delta-powered previewer for git status (tracked files get a diff,
+      -- untracked files get their raw content shown by delta directly)
+      local git_status_delta = previewers.new_termopen_previewer({
+        get_command = function(entry)
+          if entry.status == "??" then
+            return { "delta", entry.value }
+          end
+          return { "sh", "-c",
+            "git diff HEAD -- " .. vim.fn.shellescape(entry.value) .. " | delta --paging=never"
+          }
+        end,
+      })
+
+      -- Delta-powered previewer for git commits
+      local git_commits_delta = previewers.new_termopen_previewer({
+        get_command = function(entry)
+          return { "sh", "-c",
+            "git show " .. entry.value .. " | delta --paging=never"
+          }
+        end,
+      })
 
       telescope.setup({
         defaults = {
@@ -20,7 +43,12 @@ return {
             },
           },
         },
+        pickers = {
+          git_status  = { previewer = git_status_delta },
+          git_commits = { previewer = git_commits_delta },
+        },
       })
+
 
       vim.keymap.set("n", "<F13>p", builtin.find_files, { desc = "Find files" })
       vim.keymap.set("n", "<F13>g", builtin.live_grep, { desc = "Search text" })
