@@ -52,53 +52,47 @@ return {
 
   {
     "sindrets/diffview.nvim",
-    cmd = {
-      "DiffviewOpen",
-      "DiffviewClose",
-      "DiffviewFileHistory",
-      "DiffviewToggleFiles",
-    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
     },
+    keys = {
+      { "<leader>gv", ":DiffviewOpen<CR>",          desc = "Git diff (vs index)" },
+      { "<leader>gq", ":DiffviewClose<CR>",          desc = "Close git diff" },
+      { "<leader>gf", ":DiffviewFileHistory %<CR>",  desc = "Git history (current file)" },
+      {
+        "<leader>gc",
+        function()
+          local rev = vim.fn.input("Git revision (commit, HEAD~2, abc123): ")
+          if rev ~= "" then vim.cmd.DiffviewOpen(rev) end
+        end,
+        desc = "Git diff vs revision",
+      },
+      {
+        "<leader>gh",
+        function()
+          local rev = vim.fn.input("History range (empty = all, or e.g. HEAD~10..HEAD): ")
+          if rev == "" then
+            vim.cmd.DiffviewFileHistory("%")
+          else
+            vim.cmd.DiffviewFileHistory({ "%", "--range=" .. rev })
+          end
+        end,
+        desc = "Git file history",
+      },
+      {
+        "<leader>gt",
+        function() require("diffview.actions").toggle_files() end,
+        desc = "Toggle diff file panel",
+      },
+    },
     config = function()
-      local actions = require("diffview.actions")
-
       require("diffview").setup({
         use_icons = true,
         view = {
-          default = {
-            layout = "diff2_horizontal",
-          },
+          default = { layout = "diff2_horizontal" },
         },
       })
-
-      local function diff_against_rev()
-        local rev = vim.fn.input("Git revision (commit, HEAD~2, abc123): ")
-        if rev == "" then
-          return
-        end
-        vim.cmd.DiffviewOpen(rev)
-      end
-
-      local function file_history_rev()
-        local rev = vim.fn.input("History range (empty = all, or e.g. HEAD~10..HEAD): ")
-        if rev == "" then
-          vim.cmd.DiffviewFileHistory("%")
-        else
-          vim.cmd.DiffviewFileHistory({ "%", "--range=" .. rev })
-        end
-      end
-
-      vim.keymap.set("n", "<leader>gv", ":DiffviewOpen<CR>", { desc = "Git diff (vs index)" })
-      vim.keymap.set("n", "<leader>gc", diff_against_rev, { desc = "Git diff vs revision" })
-      vim.keymap.set("n", "<leader>gq", ":DiffviewClose<CR>", { desc = "Close git diff" })
-      vim.keymap.set("n", "<leader>gh", file_history_rev, { desc = "Git file history" })
-      vim.keymap.set("n", "<leader>gf", ":DiffviewFileHistory %<CR>", { desc = "Git history (current file)" })
-
-      -- Diffview panel navigation (when focus is in the file panel)
-      vim.keymap.set("n", "<leader>gt", actions.toggle_files, { desc = "Toggle diff file panel" })
     end,
   },
 }
