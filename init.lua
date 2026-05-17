@@ -10,7 +10,7 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.opt.termguicolors = true
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:1"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -29,6 +29,7 @@ vim.g.netrw_preview = 1
 vim.keymap.set("n", "<F13>w", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<F13>q", ":q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<F13>h", ":nohlsearch<CR>", { desc = "Clear search highlight" })
+vim.keymap.set("n", "<F13>t", ":Explore<CR>", { desc = "Open explorer" })
 
 -- Colorscheme
 vim.cmd.colorscheme("habamax")

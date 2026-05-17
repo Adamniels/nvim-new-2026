@@ -25,6 +25,7 @@ return {
 
       -- LSP keymaps
       vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+      vim.keymap.set("n", "gR", vim.lsp.buf.references)
       vim.keymap.set("n", "K", vim.lsp.buf.hover)
 
       vim.keymap.set("n", "<F13>rn", vim.lsp.buf.rename)
